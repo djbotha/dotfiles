@@ -109,6 +109,7 @@ autocmd BufRead,BufNewFile *.[ch] let fname = expand('<afile>:p:h') . '/types.vi
 autocmd BufRead,BufNewFile *.[ch] if filereadable(fname)
 autocmd BufRead,BufNewFile *.[ch]   exe 'so ' . fname
 autocmd BufRead,BufNewFile *.[ch] endif
+autocmd Filetype nasm setlocal ts=2 sw=2 softtabstop=2 expandtab
 autocmd FileType git set keywordprg=git\ show
 
 " highlights bg in red if over column limit
