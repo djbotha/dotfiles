@@ -137,6 +137,14 @@ nnoremap <leader>vs :source ~/.vimrc<CR>
 nnoremap <leader>ze :edit ~/.zshrc<CR>
 " source zshrc
 nnoremap <leader>zs :source ~/.zshrc<CR>
+" remap move between screens
+nnoremap <c-l> <C-w>l
+" remap move between screens
+nnoremap <c-h> <C-w>h
+" remap move between screens
+nnoremap <c-j> <C-w>j
+" remap move between screens
+nnoremap <c-k> <C-w>k
 " save
 nnoremap <leader>w  :w<CR>
 " close current buffer
