@@ -58,6 +58,10 @@ elif [[ `uname` == 'Darwin' ]]; then
 			open -a "Visual Studio Code" "$argPath"
 		fi
 	}
+	if which rbenv > /dev/null
+	then 
+		eval "$(rbenv init -)"
+	fi
 fi
 
 # The next line updates PATH for the Google Cloud SDK.

@@ -113,11 +113,12 @@ autocmd FileType git set keywordprg=git\ show
 
 " highlights bg in red if over column limit
 highlight OverLength ctermbg=red ctermfg=white guibg=#592929
-match OverLength /\%81v.\+/
+" match OverLength /\%81v.\+/
 
 " SIMPL
 au BufRead,BufNewFile *.simpl setfiletype simpl
 au FileType simpl set autoindent expandtab softtabstop=4 shiftwidth=4 tabstop=4 textwidth=80
+au FileType tex setlocal tw=0
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                              END AUTOCOMMANDS                               "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -134,10 +135,10 @@ nnoremap <leader>ve :edit ~/.vimrc<CR>
 nnoremap <leader>vs :source ~/.vimrc<CR>
 " edit zshrc
 nnoremap <leader>ze :edit ~/.zshrc<CR>
-" source zshrc
-nnoremap <leader>zs :source ~/.zshrc<CR>
 " save
 nnoremap <leader>w  :w<CR>
+" save & quit
+nnoremap <leader>wq  :wq<CR>
 " close current buffer
 nnoremap <leader>x  :bd<CR>
 " insert newline and return to normal mode
