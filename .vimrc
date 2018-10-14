@@ -109,6 +109,7 @@ autocmd BufRead,BufNewFile *.[ch] let fname = expand('<afile>:p:h') . '/types.vi
 autocmd BufRead,BufNewFile *.[ch] if filereadable(fname)
 autocmd BufRead,BufNewFile *.[ch]   exe 'so ' . fname
 autocmd BufRead,BufNewFile *.[ch] endif
+autocmd Filetype nasm setlocal ts=2 sw=2 softtabstop=2 expandtab
 autocmd FileType git set keywordprg=git\ show
 
 " highlights bg in red if over column limit
@@ -135,6 +136,16 @@ nnoremap <leader>ve :edit ~/.vimrc<CR>
 nnoremap <leader>vs :source ~/.vimrc<CR>
 " edit zshrc
 nnoremap <leader>ze :edit ~/.zshrc<CR>
+" source zshrc
+nnoremap <leader>zs :source ~/.zshrc<CR>
+" remap move between screens
+nnoremap <c-l> <C-w>l
+" remap move between screens
+nnoremap <c-h> <C-w>h
+" remap move between screens
+nnoremap <c-j> <C-w>j
+" remap move between screens
+nnoremap <c-k> <C-w>k
 " save
 nnoremap <leader>w  :w<CR>
 " save & quit
