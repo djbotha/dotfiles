@@ -30,6 +30,7 @@ alias goodshit="echo '👌👀👌👀👌👀👌👀👌👀 good shit go౦ԁ
 alias gl="git log | vim -R -"
 alias tb="nc termbin.com 9999"
 alias tbc="nc termbin.com 9999 | pbcopy"
+alias p="python"
 
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
@@ -46,6 +47,7 @@ elif [[ `uname` == 'Darwin' ]]; then
 	eval "$(jenv init -)"
 	eval "$(thefuck --alias)"
 	alias vim="mvim -v"
+	alias v="mvim -v"
 	#fortune | cowsay
 
 	function code {
@@ -62,6 +64,7 @@ elif [[ `uname` == 'Darwin' ]]; then
 	then 
 		eval "$(rbenv init -)"
 	fi
+	eval "$(docker-machine env default)"
 fi
 
 # The next line updates PATH for the Google Cloud SDK.
