@@ -42,17 +42,19 @@ call plug#end()
 "                                VIM-CONFIG                                   "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " 4 character tabstop
-set tabstop=4
+set tabstop=2
 " 4 spaces per tab when editing
-set softtabstop=4
+set softtabstop=2
 " 80 columns per line
 set textwidth=80
 " autoindent on newline
 set autoindent
+" tabs are spaces
+set expandtab
 " Add | as indentation character
-set listchars=tab:\|\ 
+" set listchars=tab:\|\ 
 " list tab characters
-set list
+" set list
 " relative line numbers
 set relativenumber
 " line numbers
