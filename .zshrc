@@ -8,7 +8,7 @@ export TERM="xterm-256color"
 export EDITOR='vim'
 
 # set name of the theme to load.
-ZSH_THEME="powerlevel9k/powerlevel9k"
+ZSH_THEME="materialshell"
 
 # theme settings
 POWERLEVEL9K_DISABLE_RPROMPT=true
@@ -32,6 +32,9 @@ alias tb="nc termbin.com 9999"
 alias tbc="nc termbin.com 9999 | pbcopy"
 alias p="python"
 
+disable r
+alias r="make clean && make && ./run.sh"
+
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
 
@@ -44,8 +47,7 @@ elif [[ `uname` == 'Darwin' ]]; then
 	export cs=~/Google\ Drive/Universiteit\ van\ Stellenbosch/Modules/Computer\ Science/ # autocompletes ~uni to the full directory
 	export tw=~/Google\ Drive/Universiteit\ van\ Stellenbosch/Modules/Applied\ Mathematics/ # autocompletes ~uni to the full directory
 	export PATH="$HOME/.jenv/bin:$PATH"
-	eval "$(jenv init -)"
-	eval "$(thefuck --alias)"
+  export PATH="/usr/local/mysql/bin:$PATH"
 	alias vim="mvim -v"
 	alias v="mvim -v"
 	#fortune | cowsay
@@ -64,7 +66,84 @@ elif [[ `uname` == 'Darwin' ]]; then
 	then 
 		eval "$(rbenv init -)"
 	fi
-	eval "$(docker-machine env default)"
+
+  source ~/dev/dotfiles/tmuxinator.zsh
+
+  # A helper function to launch docker container using mattrayner/lamp with overrideable parameters
+  #
+  # $1 - Apache Port (optional)
+  # $2 - MySQL Port (optional - no value will cause MySQL not to be mapped)
+  function launchdockerwithparams {
+      APACHE_PORT=80
+      MYSQL_PORT_COMMAND=""
+
+      if ! [[ -z "$1" ]]; then
+          APACHE_PORT=$1
+      fi
+
+      if ! [[ -z "$2" ]]; then
+          MYSQL_PORT_COMMAND="-p \"$2:3306\""
+      fi
+
+      docker run -i -t -p "$APACHE_PORT:80" $MYSQL_PORT_COMMAND -v ${PWD}/source:/app -v ${PWD}/mysql:/var/lib/mysql mattrayner/lamp:latest
+  }
+  alias launchdocker='launchdockerwithparams $1 $2'
+  alias ldi='launchdockerwithparams $1 $2'
+  alias ldd='launchdockerwithparams 8000 3306'
+  
+# Open new iTerm window from the command line
+#
+# Usage:
+#     iterm                   Opens the current directory in a new iTerm window
+#     iterm [PATH]            Open PATH in a new iTerm window
+#     iterm [CMD]             Open a new iTerm window and execute CMD
+#     iterm [PATH] [CMD] ...  You can prob'ly guess
+#
+# Example:
+#     iterm ~/Code/HelloWorld ./setup.sh
+#
+# References:
+#     iTerm AppleScript Examples:
+#     https://gitlab.com/gnachman/iterm2/wikis/Applescript
+# 
+# Credit:
+#     Inspired by tab.bash by @bobthecow
+#     link: https://gist.github.com/bobthecow/757788
+#
+
+# OSX only
+[ `uname -s` != "Darwin" ] && return
+
+function iterm () {
+    local cmd=""
+    local wd="$PWD"
+    local args="$@"
+
+    if [ -d "$1" ]; then
+        wd="$1"
+        args="${@:2}"
+    fi
+
+    if [ -n "$args" ]; then
+        # echo $args
+        cmd="; $args"
+    fi
+
+    osascript &>/dev/null <<EOF
+        tell application "iTerm"
+            activate
+            set term to (make new terminal)
+            tell term
+                launch session "Default Session"
+                tell the last session
+                    delay 1
+                    write text "cd $wd$cmd"
+                end
+            end
+        end tell
+EOF
+}
+iterm $@
 fi
 
 # The next line updates PATH for the Google Cloud SDK.
@@ -73,3 +152,7 @@ if [ -f '/Users/m/Downloads/google-cloud-sdk/path.zsh.inc' ]; then source '/User
 # The next line enables shell command completion for gcloud.
 if [ -f '/Users/m/Downloads/google-cloud-sdk/completion.zsh.inc' ]; then source '/Users/m/Downloads/google-cloud-sdk/completion.zsh.inc'; fi
 export SCIPY_PIL_IMAGE_VIEWER='/Applications/Preview.app'
+
+#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+export SDKMAN_DIR="/Users/daniel/.sdkman"
+[[ -s "/Users/daniel/.sdkman/bin/sdkman-init.sh" ]] && source "/Users/daniel/.sdkman/bin/sdkman-init.sh"
