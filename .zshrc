@@ -25,7 +25,7 @@ source $ZSH/oh-my-zsh.sh
 alias config="vim ~/dev/setup/zshrc/.zshrc"
 alias c="clear"
 alias timetable="open ~/Google\ Drive/Universiteit\ van\ Stellenbosch/Timetables/Timetable_2018_2.png"
-alias gs="git status"
+alias gcd="git checkout dev"
 alias goodshit="echo '👌👀👌👀👌👀👌👀👌👀 good shit go౦ԁ sHit👌 thats ✔ some good👌👌shit right👌👌there👌👌👌 right✔there ✔✔if i do ƽaү so my self 💯 i say so 💯 thats what im talking about right there right there (chorus: ʳᶦᵍʰᵗ ᵗʰᵉʳᵉ) mMMMMᎷМ💯 👌👌 👌НO0ОଠOOOOOОଠଠOoooᵒᵒᵒᵒᵒᵒᵒᵒᵒ👌 👌👌 👌 💯 👌 👀 👀 👀 👌👌Good shit' | pbcopy"
 alias gl="git log | vim -R -"
 alias tb="nc termbin.com 9999"
@@ -63,7 +63,7 @@ elif [[ `uname` == 'Darwin' ]]; then
 		fi
 	}
 	if which rbenv > /dev/null
-	then 
+	then
 		eval "$(rbenv init -)"
 	fi
 
@@ -90,7 +90,7 @@ elif [[ `uname` == 'Darwin' ]]; then
   alias launchdocker='launchdockerwithparams $1 $2'
   alias ldi='launchdockerwithparams $1 $2'
   alias ldd='launchdockerwithparams 8000 3306'
-  
+
 # Open new iTerm window from the command line
 #
 # Usage:
@@ -105,7 +105,7 @@ elif [[ `uname` == 'Darwin' ]]; then
 # References:
 #     iTerm AppleScript Examples:
 #     https://gitlab.com/gnachman/iterm2/wikis/Applescript
-# 
+#
 # Credit:
 #     Inspired by tab.bash by @bobthecow
 #     link: https://gist.github.com/bobthecow/757788
