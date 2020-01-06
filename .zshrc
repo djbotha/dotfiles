@@ -7,6 +7,12 @@ export TERM="xterm-256color"
 # vim default editor
 export EDITOR='vim'
 
+# Flask settings
+export NEO4J_PORT=7687
+export FLASK_DEBUG=1
+export FLASK_ENV=development
+export FLASK_APP=app.py
+
 # set name of the theme to load.
 ZSH_THEME="materialshell"
 
@@ -17,7 +23,8 @@ POWERLEVEL9K_PROMPT_ON_NEWLINE=true
 POWERLEVEL9K_ALWAYS_SHOW_USER=true
 
 # plugins
-plugins=(git)
+plugins=(git zsh-autosuggestions zsh-syntax-highlighting)
+export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=blue'
 
 source $ZSH/oh-my-zsh.sh
 
@@ -31,6 +38,8 @@ alias gl="git log | vim -R -"
 alias tb="nc termbin.com 9999"
 alias tbc="nc termbin.com 9999 | pbcopy"
 alias p="python"
+alias gs="git status"
+# source ~/.oh-my-zsh/plugins/git/git.plugin.zsh
 
 disable r
 alias r="make clean && make && ./run.sh"
@@ -42,6 +51,28 @@ if [[ `uname` == 'Linux' ]]; then
 	export OS=linux
 	/usr/bin/setxkbmap -option "caps:swapescape"
 elif [[ `uname` == 'Darwin' ]]; then
+  export PATH="/usr/local/opt/icu4c/bin:$PATH"
+  export PATH="/usr/local/opt/icu4c/sbin:$PATH"
+  export PATH="/usr/local/opt/ruby/bin:$PATH"
+  export PATH="/usr/local/lib/ruby/gems/2.6.0/bin:$PATH"
+
+  # OLD
+  # export LDFLAGS="-L/usr/local/opt/icu4c/lib"
+  # export CPPFLAGS="-I/usr/local/opt/icu4c/include"
+  # export PKG_CONFIG_PATH="/usr/local/opt/icu4c/lib/pkgconfig"
+
+  # NEW
+  export LDFLAGS="-L/usr/local/opt/ruby/lib"
+  export CPPFLAGS="-I/usr/local/opt/ruby/include"
+  export PKG_CONFIG_PATH="/usr/local/opt/ruby/lib/pkgconfig"
+
+  # Maven
+  export M2_HOME="/usr/local/Cellar/maven/3.6.1/libexec"
+  export M2="$M2_HOME/bin"
+  export PATH="$PATH:$M2_HOME/bin"
+  export JAVA_HOME=$(/usr/libexec/java_home)
+  export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_221.jdk/Contents/Home
+
 	export OS=osx
 	export uni=~/Google\ Drive/Universiteit\ van\ Stellenbosch/Modules # autocompletes ~uni to the full directory
 	export cs=~/Google\ Drive/Universiteit\ van\ Stellenbosch/Modules/Computer\ Science/ # autocompletes ~uni to the full directory
@@ -50,6 +81,7 @@ elif [[ `uname` == 'Darwin' ]]; then
   export PATH="/usr/local/mysql/bin:$PATH"
 	alias vim="mvim -v"
 	alias v="mvim -v"
+  bindkey -v
 	#fortune | cowsay
 
 	function code {
@@ -156,3 +188,5 @@ export SCIPY_PIL_IMAGE_VIEWER='/Applications/Preview.app'
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="/Users/daniel/.sdkman"
 [[ -s "/Users/daniel/.sdkman/bin/sdkman-init.sh" ]] && source "/Users/daniel/.sdkman/bin/sdkman-init.sh"
+
+
