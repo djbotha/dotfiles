@@ -26,7 +26,7 @@ Plug 'danilo-augusto/vim-afterglow'
 " Firacode Font Ligatures
 Plug 'tonsky/firacode'
 
-" Latex Support 
+" Latex Support
 Plug 'lervag/vimtex'
 
 " Dracula theme
@@ -52,7 +52,7 @@ set autoindent
 " tabs are spaces
 set expandtab
 " Add | as indentation character
-" set listchars=tab:\|\ 
+" set listchars=tab:\|\
 " list tab characters
 " set list
 " relative line numbers
@@ -106,7 +106,7 @@ set scrolloff=5
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                                 AUTOCOMMANDS                                "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Make a highlight file for user-defined types. 
+" Make a highlight file for user-defined types.
 autocmd BufRead,BufNewFile *.[ch] let fname = expand('<afile>:p:h') . '/types.vim'
 autocmd BufRead,BufNewFile *.[ch] if filereadable(fname)
 autocmd BufRead,BufNewFile *.[ch]   exe 'so ' . fname
@@ -163,7 +163,7 @@ nnoremap <silent> <Space> :nohlsearch<Bar>:echo<CR>
 " autocomplete braces
 inoremap {<TAB> {<CR>}<Esc>O
 " autocomplete c comments
-inoremap // /*  */<Esc><BS><BS>i
+" inoremap // /*  */<Esc><BS><BS>i
 "Type ss<TAB> to get return EXIT_SUCCESS
 inoremap ss<TAB> return EXIT_SUCCESS;<Esc>
 "Type ctemp to insert c boilerplate code
